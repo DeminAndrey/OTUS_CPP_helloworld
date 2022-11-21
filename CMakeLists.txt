@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.2)
 
 
-if(DEFINED ENV{TRAVIS_BUILD_NUMBER})
-    project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
-else()
-    project(helloworld VERSION 0.0.1)
-endif()
+set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
+set(PROJECT_VESRION 0.0.${PATCH_VERSION})
+
+project(helloworld VERSION ${PROJECT_VESRION})
 
 configure_file(version.h.in version.h)
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
